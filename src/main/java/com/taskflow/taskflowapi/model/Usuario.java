@@ -1,5 +1,6 @@
 package com.taskflow.taskflowapi.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -22,5 +23,6 @@ public class Usuario {
     private String email;
 
     @OneToMany(mappedBy = "usuario")
+    @JsonIgnore
     private List<Proyecto> proyectos = new ArrayList<>();
 }
