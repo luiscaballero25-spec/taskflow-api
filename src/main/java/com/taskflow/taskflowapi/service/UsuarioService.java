@@ -1,8 +1,10 @@
 package com.taskflow.taskflowapi.service;
 
+import com.taskflow.taskflowapi.exception.RecursoNoEncontradoException;
 import com.taskflow.taskflowapi.model.Usuario;
 import com.taskflow.taskflowapi.repository.UsuarioRepository;
 import org.springframework.stereotype.Service;
+import com.taskflow.taskflowapi.exception.RecursoNoEncontradoException;
 
 import java.util.List;
 
@@ -21,7 +23,7 @@ public class UsuarioService {
 
     public Usuario buscarPorId(Long id){
         return usuarioRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Usuario no encontrado con id " + id));
+                .orElseThrow(() -> new RecursoNoEncontradoException("Usuario no encontrado con id " + id));
     }
 
     public Usuario crear (Usuario usuario){

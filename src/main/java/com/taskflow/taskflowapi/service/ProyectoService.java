@@ -1,9 +1,11 @@
 package com.taskflow.taskflowapi.service;
 
+import com.taskflow.taskflowapi.exception.RecursoNoEncontradoException;
 import com.taskflow.taskflowapi.model.Proyecto;
 import com.taskflow.taskflowapi.repository.ProyectoRepository;
 import org.springframework.stereotype.Service;
 import org.yaml.snakeyaml.events.Event;
+import com.taskflow.taskflowapi.exception.RecursoNoEncontradoException;
 
 import java.util.List;
 
@@ -22,7 +24,7 @@ public class ProyectoService {
 
     public Proyecto buscarPorId(Long id) {
         return proyectoRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Proyecto no encontrado con id " + id));
+                .orElseThrow(() -> new RecursoNoEncontradoException("Proyecto no encontrado con id " + id));
     }
 
     public Proyecto crear(Proyecto proyecto) {
