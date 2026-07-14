@@ -1,6 +1,7 @@
 package com.taskflow.taskflowapi.controller;
 
-import com.taskflow.taskflowapi.model.Tarea;
+import com.taskflow.taskflowapi.dto.TareaRequestDTO;
+import com.taskflow.taskflowapi.dto.TareaResponseDTO;
 import com.taskflow.taskflowapi.service.TareaService;
 import org.springframework.web.bind.annotation.*;
 import jakarta.validation.Valid;
@@ -16,23 +17,23 @@ public class TareaController {
     }
 
     @GetMapping
-    public List<Tarea> listarTodos() {
+    public List<TareaResponseDTO> listarTodos() {
         return tareaService.listarTodos();
     }
 
     @GetMapping("/{id}")
-    public Tarea buscarPorId(@PathVariable Long id) {
+    public TareaResponseDTO buscarPorId(@PathVariable Long id) {
         return tareaService.buscarPorId(id);
     }
 
     @PostMapping
-    public Tarea crear(@Valid @RequestBody Tarea tarea) {
-        return tareaService.crear(tarea);
+    public TareaResponseDTO crear(@Valid @RequestBody TareaRequestDTO dto) {
+        return tareaService.crear(dto);
     }
 
     @PutMapping("/{id}")
-    public Tarea actualizar(@PathVariable Long id,@Valid @RequestBody Tarea tarea) {
-        return tareaService.actualizar(id, tarea);
+    public TareaResponseDTO actualizar(@PathVariable Long id,@Valid @RequestBody TareaRequestDTO dto) {
+        return tareaService.actualizar(id, dto);
     }
 
     @DeleteMapping("/{id}")
