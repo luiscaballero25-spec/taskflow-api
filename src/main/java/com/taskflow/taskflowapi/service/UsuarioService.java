@@ -1,5 +1,7 @@
 package com.taskflow.taskflowapi.service;
 
+import com.taskflow.taskflowapi.dto.UsuarioRequestDTO;
+import com.taskflow.taskflowapi.dto.UsuarioResponseDTO;
 import com.taskflow.taskflowapi.exception.RecursoNoEncontradoException;
 import com.taskflow.taskflowapi.model.Usuario;
 import com.taskflow.taskflowapi.repository.UsuarioRepository;
@@ -16,27 +18,50 @@ public class UsuarioService {
             this.usuarioRepository = usuarioRepository;
     }
 
-    public List<Usuario>listarTodos(){
-        return usuarioRepository.findAll();
+    public List<UsuarioResponseDTO>listarTodos(){
+        return usuarioRepository.findAll()
+                .stream()
+                .map(this::convertirAResponseDTO)
+                .toList();
     }
 
-    public Usuario buscarPorId(Long id){
-        return usuarioRepository.findById(id)
-                .orElseThrow(() -> new RecursoNoEncontradoException("Usuario no encontrado con id " + id));
+    public UsuarioResponseDTO buscarPorId(Long id){
+        Usuario usuario = buscarEntidadPorId(id);
+        return convertirAResponseDTO(usuario);
     }
 
-    public Usuario crear (Usuario usuario){
-        return usuarioRepository.save(usuario);
+    public UsuarioResponseDTO crear (UsuarioRequestDTO dto){
+        Usuario usuario = new Usuario();
+        usuario.setNombre(dto.getNombre());
+        usuario.setEmail(dto.getEmail());
+
+        Usuario guardado = usuarioRepository.save(usuario);
+        return convertirAResponseDTO(guardado);
     }
 
-    public Usuario actualizar(Long id, Usuario datosNuevos){
-        Usuario usuario = buscarPorId(id);
-        usuario.setNombre(datosNuevos.getNombre());
-        usuario.setEmail(datosNuevos.getEmail());
-        return usuarioRepository.save(usuario);
+    public UsuarioResponseDTO actualizar(Long id, UsuarioRequestDTO dto){
+        Usuario usuario = buscarEntidadPorId(id);
+        usuario.setNombre(dto.getNombre());
+        usuario.setEmail(dto.getEmail());
+
+        Usuario actualizado = usuarioRepository.save(usuario);
+        return convertirAResponseDTO(actualizado);
     }
 
     public void eliminar(Long id){
         usuarioRepository.deleteById(id);
+    }
+
+    private Usuario buscarEntidadPorId(Long id) {
+        return usuarioRepository.findById(id)
+                .orElseThrow(() -> new RecursoNoEncontradoException("Usuario no encontrado con id " + id));
+    }
+
+    private UsuarioResponseDTO convertirAResponseDTO(Usuario usuario) {
+        UsuarioResponseDTO dto = new UsuarioResponseDTO();
+        dto.setId(usuario.getId());
+        dto.setNombre(usuario.getNombre());
+        dto.setEmail(usuario.getEmail());
+        return dto;
     }
 }

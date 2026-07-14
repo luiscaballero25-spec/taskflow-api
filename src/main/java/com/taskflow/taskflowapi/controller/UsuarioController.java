@@ -1,6 +1,7 @@
 package com.taskflow.taskflowapi.controller;
 
-import com.taskflow.taskflowapi.model.Usuario;
+import com.taskflow.taskflowapi.dto.UsuarioResponseDTO;
+import com.taskflow.taskflowapi.dto.UsuarioRequestDTO;
 import com.taskflow.taskflowapi.service.UsuarioService;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
@@ -19,23 +20,23 @@ public class UsuarioController {
     }
 
     @GetMapping
-    public List<Usuario> listarTodos(){
+    public List<UsuarioResponseDTO> listarTodos(){
         return usuarioService.listarTodos();
     }
 
     @GetMapping("/{id}")
-    public Usuario buscarPorId(@PathVariable Long id){
+    public UsuarioResponseDTO buscarPorId(@PathVariable Long id){
         return usuarioService.buscarPorId(id);
     }
 
     @PostMapping
-    public Usuario crear(@Valid @RequestBody Usuario usuario){
-        return usuarioService.crear(usuario);
+    public UsuarioResponseDTO crear(@Valid @RequestBody UsuarioRequestDTO dto){
+        return usuarioService.crear(dto);
     }
 
     @PutMapping("/{id}")
-    public Usuario actualizar(@PathVariable Long id, @Valid @RequestBody Usuario usuario){
-        return usuarioService.actualizar(id, usuario);
+    public UsuarioResponseDTO actualizar(@PathVariable Long id, @Valid @RequestBody UsuarioRequestDTO dto){
+        return usuarioService.actualizar(id, dto);
     }
 
     @DeleteMapping("/{id}")
