@@ -3,6 +3,7 @@ package com.taskflow.taskflowapi.controller;
 import com.taskflow.taskflowapi.model.Tarea;
 import com.taskflow.taskflowapi.service.TareaService;
 import org.springframework.web.bind.annotation.*;
+import jakarta.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -25,12 +26,12 @@ public class TareaController {
     }
 
     @PostMapping
-    public Tarea crear(@RequestBody Tarea tarea) {
+    public Tarea crear(@Valid @RequestBody Tarea tarea) {
         return tareaService.crear(tarea);
     }
 
     @PutMapping("/{id}")
-    public Tarea actualizar(@PathVariable Long id, @RequestBody Tarea tarea) {
+    public Tarea actualizar(@PathVariable Long id,@Valid @RequestBody Tarea tarea) {
         return tareaService.actualizar(id, tarea);
     }
 

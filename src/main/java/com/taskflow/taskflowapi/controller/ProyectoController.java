@@ -3,6 +3,7 @@ package com.taskflow.taskflowapi.controller;
 import com.taskflow.taskflowapi.model.Proyecto;
 import com.taskflow.taskflowapi.service.ProyectoService;
 import org.springframework.web.bind.annotation.*;
+import jakarta.validation.Valid;
 
 import java.util.List;
 
@@ -26,12 +27,12 @@ public class ProyectoController {
     }
 
     @PostMapping
-    public Proyecto crear(@RequestBody Proyecto proyecto){
+    public Proyecto crear(@Valid @RequestBody Proyecto proyecto){
         return proyectoService.crear(proyecto);
     }
 
-    @PutMapping("/{ID}")
-    public Proyecto actualizar(@PathVariable Long id, @RequestBody Proyecto proyecto){
+    @PutMapping("/{id}")
+    public Proyecto actualizar(@PathVariable Long id,@Valid @RequestBody Proyecto proyecto){
         return proyectoService.actualizar(id, proyecto);
     }
 

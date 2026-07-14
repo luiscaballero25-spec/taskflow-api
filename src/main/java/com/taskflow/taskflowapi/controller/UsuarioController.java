@@ -2,6 +2,7 @@ package com.taskflow.taskflowapi.controller;
 
 import com.taskflow.taskflowapi.model.Usuario;
 import com.taskflow.taskflowapi.service.UsuarioService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,12 +29,12 @@ public class UsuarioController {
     }
 
     @PostMapping
-    public Usuario crear(@RequestBody Usuario usuario){
+    public Usuario crear(@Valid @RequestBody Usuario usuario){
         return usuarioService.crear(usuario);
     }
 
     @PutMapping("/{id}")
-    public Usuario actualizar(@PathVariable Long id, @RequestBody Usuario usuario){
+    public Usuario actualizar(@PathVariable Long id, @Valid @RequestBody Usuario usuario){
         return usuarioService.actualizar(id, usuario);
     }
 

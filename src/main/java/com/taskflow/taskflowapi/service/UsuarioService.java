@@ -4,7 +4,6 @@ import com.taskflow.taskflowapi.exception.RecursoNoEncontradoException;
 import com.taskflow.taskflowapi.model.Usuario;
 import com.taskflow.taskflowapi.repository.UsuarioRepository;
 import org.springframework.stereotype.Service;
-import com.taskflow.taskflowapi.exception.RecursoNoEncontradoException;
 
 import java.util.List;
 
