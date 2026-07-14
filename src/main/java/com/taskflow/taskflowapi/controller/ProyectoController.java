@@ -1,6 +1,7 @@
 package com.taskflow.taskflowapi.controller;
 
-import com.taskflow.taskflowapi.model.Proyecto;
+import com.taskflow.taskflowapi.dto.ProyectoRequestDTO;
+import com.taskflow.taskflowapi.dto.ProyectoResponseDTO;
 import com.taskflow.taskflowapi.service.ProyectoService;
 import org.springframework.web.bind.annotation.*;
 import jakarta.validation.Valid;
@@ -17,23 +18,23 @@ public class ProyectoController {
     }
 
     @GetMapping
-    public List<Proyecto> listarTodos(){
+    public List<ProyectoResponseDTO> listarTodos(){
         return  proyectoService.listarTodos();
     }
 
     @GetMapping("/{id}")
-    public Proyecto buscarPorId(@PathVariable Long id){
+    public ProyectoResponseDTO buscarPorId(@PathVariable Long id){
         return proyectoService.buscarPorId(id);
     }
 
     @PostMapping
-    public Proyecto crear(@Valid @RequestBody Proyecto proyecto){
-        return proyectoService.crear(proyecto);
+    public ProyectoResponseDTO crear(@Valid @RequestBody ProyectoRequestDTO dto){
+        return proyectoService.crear(dto);
     }
 
     @PutMapping("/{id}")
-    public Proyecto actualizar(@PathVariable Long id,@Valid @RequestBody Proyecto proyecto){
-        return proyectoService.actualizar(id, proyecto);
+    public ProyectoResponseDTO actualizar(@PathVariable Long id,@Valid @RequestBody ProyectoRequestDTO dto){
+        return proyectoService.actualizar(id, dto);
     }
 
     @DeleteMapping("/{id}")
