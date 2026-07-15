@@ -235,7 +235,8 @@ src/main/java/com/taskflow/taskflowapi/
 ```
 
 ## Documentación y capturas
-![Taskflow API](docs/readme_collage_taskflow.png)
+
+<img width="442" height="913" alt="image" src="https://github.com/user-attachments/assets/66990fb9-f330-4f7b-a0a6-a5fa8d38ca55" />
 
 Puedes probar la API interactivamente en Swagger UI una vez levantado el proyecto:
 `http://localhost:8080/swagger-ui/index.html`
