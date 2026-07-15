@@ -234,6 +234,8 @@ src/main/java/com/taskflow/taskflowapi/
 └── exception/      Excepciones personalizadas y manejo global de errores
 ```
 
-## Estado del proyecto
+## Documentación y capturas
+![Taskflow API](docs/readme_collage_taskflow.png)
 
-Proyecto desarrollado como práctica de backend con Spring Boot. Próximas mejoras: tests de integración, documentación OpenAPI/Swagger, paginación de listados.
+Puedes probar la API interactivamente en Swagger UI una vez levantado el proyecto:
+`http://localhost:8080/swagger-ui/index.html`
